@@ -67,6 +67,10 @@ int main(){
          }
         printf("\njogada: "); //indica as jogadas do usário com exceção da inicial 
     } 
+
+    pilha_libera(p[0]);
+    pilha_libera(p[1]);
+    pilha_libera(p[3]);
     
     return 0;    
 } 
