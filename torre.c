@@ -78,3 +78,13 @@ int pilha_tamanho(Pilha* p){
     }
     return cont;
 }
+
+void pilha_libera(Pilha* p){
+    PilhaNo* n = p->topo;
+    while(n != NULL){
+        PilhaNo* n2 = n->prox;
+        free(n);
+        n = n2; 
+    }
+    free(p);  
+}
