@@ -70,7 +70,7 @@ int main(){
 
     pilha_libera(p[0]);
     pilha_libera(p[1]);
-    pilha_libera(p[3]);
+    pilha_libera(p[2]);
     
     return 0;    
 } 
