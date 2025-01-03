@@ -28,3 +28,6 @@ int pilha_tamanho(Pilha* p);
 /*retorna a quantidade de elementos na pilha para indicar tanto se o
 usuário ganhou o jogo, quando a pilha 2 ou 3 estiver completa, quanto para 
 auxiliar na impressão de cada valor dentro da função "pilha_imprime"*/
+
+void pilha_libera(Pilha* p);
+//libera o espaço alocado na memória para as tres pilha
