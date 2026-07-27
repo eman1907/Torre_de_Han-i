@@ -1,33 +1,35 @@
-typedef struct pilha Pilha; //nomeia a struct pilha como "Pilha"
-typedef struct pilhano PilhaNo; //nomeia a struct pilhano como "PilhaNo"
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct pilha Pilha;
+typedef struct pilhano PilhaNo;
 
 struct pilha{
-    PilhaNo* topo; //ponteiro para o topo da pilha
+    PilhaNo* topo;
 };
 
 struct pilhano{
-    int valor; //tamanho de cada pino da torre
-    PilhaNo* prox; //ponteiro para o pino "de baixo"
+    int valor;
+    PilhaNo* prox;
 };
 
-Pilha* pilha_cria(); 
-//cria uma estrutura de pilha, apontando o topo para NULL
+Pilha* pilha_cria();
+//cria uma pilha vazia 
 
 void pilha_push(Pilha* p, int v);
-//adiciona um elemento ao topo da pilha sempre que solicitado
+//adicona um elemento no topo da pilha
 
-int pilha_pop(Pilha* p);
-//retira o elemento do topo da pilha sempre que solicitado 
+int pilha_pop(Pilha* p); 
+//retira o elemento do topo da pilha
 
-void pilha_imprime(Pilha* p1, Pilha* p2, Pilha* p3); 
-/*imprime as tres pilhas, que representam os pinos da torre, na sua devida 
-ordem com cada disco correspondente, entretanto, se a pilha estiver vazia, 
-será impresso o número "0"*/
+int tamanho_pilha(Pilha* p);
+//retorna a quantidade de elementos na pilha
 
-int pilha_tamanho(Pilha* p);
-/*retorna a quantidade de elementos na pilha para indicar tanto se o
-usuário ganhou o jogo, quando a pilha 2 ou 3 estiver completa, quanto para 
-auxiliar na impressão de cada valor dentro da função "pilha_imprime"*/
+void imprime_pilhas(Pilha* p1, Pilha* p2, Pilha* p3); 
+//imprime as tres pilhas 
 
-void pilha_libera(Pilha* p);
-//libera o espaço alocado na memória para as tres pilha
+int valor_topo(Pilha* p);
+//retorna o valor do topo sem o remover
+
+void libera_pilha(Pilha* p); 
+//libera a memoria alocada para a pilha
