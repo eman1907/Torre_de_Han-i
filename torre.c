@@ -1,12 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "torre.h" 
+#include "pilha.h"
 
 Pilha* pilha_cria(){
     Pilha* p = malloc(sizeof(Pilha));
     if (p == NULL) exit(1);
     p->topo = NULL;
-    return p; 
+    return p;
 }
 
 void pilha_push(Pilha* p, int v){
@@ -14,8 +12,8 @@ void pilha_push(Pilha* p, int v){
     if (n == NULL) exit(1);
     n->valor = v;
     n->prox = p->topo;
-    p->topo = n;
-} 
+    p->topo = n; 
+}
 
 int pilha_pop(Pilha* p){
     PilhaNo* n = p->topo;
@@ -23,68 +21,65 @@ int pilha_pop(Pilha* p){
     p->topo = n->prox;
     free(n);
     return v; 
-} 
+}
 
-void pilha_imprime(Pilha* p1, Pilha* p2, Pilha* p3){
-
-    int cont = 0;
-    PilhaNo* n = p1->topo;
-    PilhaNo* n2 = p2->topo;
-    PilhaNo* n3 = p3->topo;
-    while(n != NULL || n2 != NULL || n3 != NULL){
-        cont++;
-        if (n != NULL) n = n->prox;
-        if (n2 != NULL) n2 = n2->prox;
-        if (n3 != NULL) n3 = n3->prox;
-    }
-
-
-    PilhaNo* x = p1->topo;
-    PilhaNo* x2 = p2->topo;
-    PilhaNo* x3 = p3->topo;
-    printf("\n");
-    for (int i = cont; i > 0; i--){ 
-        if (pilha_tamanho(p1) >= i){
-            printf("%d " , x->valor);
-            x = x->prox;
-        }
-        else if (i == 1 && p1->topo == NULL) printf("0 ");
-        else printf("  ");
-
-         if (pilha_tamanho(p2) >= i){
-            printf("%d " , x2->valor);
-            x2 = x2->prox;
-        }
-        else if (i == 1 && p2->topo == NULL) printf("0 ");
-        else printf("  ");
-
-         if (pilha_tamanho(p3) >= i){
-            printf("%d " , x3->valor);
-            x3 = x3->prox; 
-        }
-        else if (i == 1 && p3->topo == NULL) printf("0 ");
-        else printf("  ");
-
-        printf("\n");  
-    } 
-} 
-
-
-int pilha_tamanho(Pilha* p){
-    int cont = 0;
+int tamanho_pilha(Pilha* p){
+    int cont = 0; 
     PilhaNo* n;
-    for (n = p->topo; n != NULL; n = n->prox){
+    for (n = p->topo; n != NULL; n = n->prox) 
         cont++;
-    }
     return cont;
 }
 
-void pilha_libera(Pilha* p){
-    PilhaNo* n = p->topo;
-    while(n != NULL){
-        PilhaNo* n2 = n->prox;
-        free(n);
-        n = n2; 
+void imprime_pilhas(Pilha* p1, Pilha* p2, Pilha* p3){
+    int tamanho;
+    if (tamanho_pilha(p1) >= tamanho_pilha(p2) && tamanho_pilha(p1) >= tamanho_pilha(p3)){
+        tamanho = tamanho_pilha(p1);
+    } else if (tamanho_pilha(p2) >= tamanho_pilha(p1) && tamanho_pilha(p2) >= tamanho_pilha(p3)){
+        tamanho = tamanho_pilha(p2);
+    } else {
+        tamanho = tamanho_pilha(p3); 
     }
-    free(p);  
+    //calcula o tamanho da pilha mais alta entre as 3 
+
+    PilhaNo* n1, *n2, *n3;
+    n1 = p1->topo;
+    n2 = p2->topo;
+    n3 = p3->topo;
+    for (int i = tamanho; i > 0; i--){
+        if (tamanho_pilha(p1) >= i) {
+            printf("%d " , n1->valor);
+            n1 = n1->prox;
+        } else if (i == 1 && p1->topo == NULL) printf("0 ");
+        else printf("  ");
+
+        if (tamanho_pilha(p2) >= i) {
+            printf("%d " , n2->valor);
+            n2 = n2->prox;
+        } else if (i == 1 && p2->topo == NULL) printf("0 ");
+        else printf("  ");
+
+        if (tamanho_pilha(p3) >= i) {
+            printf("%d " , n3->valor);
+            n3 = n3->prox;
+        } else if (i == 1 && p3->topo == NULL) printf("0 ");
+        else printf("  ");
+
+        printf("\n");
+    }
+}
+
+int valor_topo(Pilha* p){
+    return p->topo->valor; 
+}
+
+void libera_pilha(Pilha* p){
+    PilhaNo* n = p->topo;
+    while (n != NULL){
+        PilhaNo* temp = n;
+        n = n->prox;
+        free(temp);
+    }
+    free(p);
+    p = NULL;  
 }
