@@ -1,4 +1,4 @@
-#include "pilha.h"
+#include "torre.h"
 
 Pilha* pilha_cria(){
     Pilha* p = malloc(sizeof(Pilha));
@@ -26,8 +26,7 @@ int pilha_pop(Pilha* p){
 int tamanho_pilha(Pilha* p){
     int cont = 0; 
     PilhaNo* n;
-    for (n = p->topo; n != NULL; n = n->prox) 
-        cont++;
+    for (n = p->topo; n != NULL; n = n->prox) cont++;
     return cont;
 }
 
