@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct pilha Pilha; //nova linhaaaaaaaaaaaaaaaaaaaa
+typedef struct pilha Pilha; //nova linha de TESTE
 typedef struct pilhano PilhaNo;
 
 struct pilha{
