@@ -19,7 +19,7 @@ int main(){
     }
     printf("%d 0 0\n" , N);
     printf("- - -\n1 2 3\n"); 
-    //imprime pilha inicial para usário ter noção das dimensões
+    //Imprime pilha inicial para usário ter noção das dimensões
 
     int ini, fim, transf, cont_jogadas;
     cont_jogadas = 0; 
